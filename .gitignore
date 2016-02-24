@@ -1,0 +1,71 @@
+var AjaxHelper = (function(jquery){
+	function FindByID(name)
+	{
+		var result = Append("#", name);		
+		return Select(result);;
+	}
+	
+	function FindByClass(name)
+	{
+		var result = Append(".", name);		
+		return Select(result);
+	}
+	
+	function Select(data)
+	{
+		return jquery(data);
+	}
+	
+	function SetValueByID(name, value)
+	{
+		var data = Append("#", name);
+		Set(data, value);
+	}
+	
+	function SetValueByClass(name, value)
+	{
+		var data = Append(".", name);
+		Set(data, value);
+	}
+	
+	function Set(name, value)
+	{
+		if(IsInput(name))
+		{
+			SetValue(name, value);
+		}else
+		{
+			SetText(name, value);
+		}
+	}
+	
+	function SetText(name, value)
+	{
+		Select(name).Text(value);
+	}
+	
+	function SetValue(name, value)
+	{
+		Select(name).val(value);
+	}
+	
+	function IsInput(name)
+	{
+		var result = Select(name).is("input");
+		return result;
+	}
+	
+	function Append(symbol, name)
+	{
+		var result = symbol + name;
+		return result;
+	}
+	
+	return 
+	{
+		FindByID: 			FindByID,
+		FindByClass: 		FindByClass,
+		SetValueByID:		SetValueByID,
+		SetValueByClass: 	SetValueByClass
+	};
+});
